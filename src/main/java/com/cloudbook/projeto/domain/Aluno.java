@@ -1,11 +1,14 @@
 package com.cloudbook.projeto.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Aluno implements Serializable{
@@ -22,6 +25,9 @@ public class Aluno implements Serializable{
 	private char genero;
 	private String colegio;
 
+	@OneToMany(mappedBy = "aluno")
+	List<Repositorio> repositorios = new ArrayList<>();
+	
 	public Aluno() {
 
 	}
