@@ -15,18 +15,20 @@ public class Aluno implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nome;
 	private String email;
 	private String telefone;
-	private boolean genero;
+	private char genero;
 	private String colegio;
 
 	public Aluno() {
 
 	}
 
-	public Aluno(String nome, String email, String telefone, boolean genero, String colegio) {
+	public Aluno(Integer id,String nome, String email, String telefone, char genero, String colegio) {
 		super();
+		this.id=id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
@@ -85,11 +87,11 @@ public class Aluno implements Serializable{
 		this.telefone = telefone;
 	}
 
-	public boolean isGenero() {
+	public char isGenero() {
 		return genero;
 	}
 
-	public void setGenero(boolean genero) {
+	public void setGenero(char genero) {
 		this.genero = genero;
 	}
 
