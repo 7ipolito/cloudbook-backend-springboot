@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.repositories.AlunoRepository;
+import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class AlunoService {
@@ -18,7 +19,9 @@ public class AlunoService {
 		public Aluno find(Integer id) {
 			
 			 Optional<Aluno> obj = repo.findById(id);
-			return obj.orElse(null);
+			 
+			 return obj.orElseThrow(() -> new ObjectNotFoundException(
+					 "Aluno não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName())); 
 			} 
 
 	}

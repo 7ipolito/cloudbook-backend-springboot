@@ -25,6 +25,7 @@ public class Aluno implements Serializable{
 	private char genero;
 	private String colegio;
 
+	
 	@OneToMany(mappedBy = "aluno")
 	List<Repositorio> repositorios = new ArrayList<>();
 	
