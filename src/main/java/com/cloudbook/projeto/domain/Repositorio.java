@@ -1,18 +1,17 @@
 package com.cloudbook.projeto.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,6 +28,10 @@ public class Repositorio implements Serializable{
 	private Date data;
 	private String descricao;
 	private boolean visibilidade;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "repositorio")
+	private List<Disciplina> disciplinas = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name="aluno_id")
@@ -47,15 +50,14 @@ public class Repositorio implements Serializable{
 		this.visibilidade = visibilidade;
 		this.aluno = aluno;
 	}
-	
-//APAGAR DEPOIS
-	public Repositorio(Integer id,String nome, String descricao, boolean visibilidade, Aluno aluno) {
-		super();
-		this.id=id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.visibilidade = visibilidade;
-		this.aluno = aluno;
+
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 	public String getNome() {
