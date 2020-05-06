@@ -15,7 +15,6 @@ public class AlunoService {
 	@Autowired
 	private AlunoRepository repo;
 	
-	
 		public Aluno find(Integer id) {
 			
 			 Optional<Aluno> obj = repo.findById(id);

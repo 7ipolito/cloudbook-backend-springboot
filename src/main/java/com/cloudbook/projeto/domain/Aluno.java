@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Aluno implements Serializable{
 	
@@ -25,7 +27,7 @@ public class Aluno implements Serializable{
 	private char genero;
 	private String colegio;
 
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "aluno")
 	List<Repositorio> repositorios = new ArrayList<>();
 	
@@ -108,6 +110,20 @@ public class Aluno implements Serializable{
 
 	public void setColegio(String colegio) {
 		this.colegio = colegio;
+	}
+	
+	
+
+	public List<Repositorio> getRepositorios() {
+		return repositorios;
+	}
+
+	public void setRepositorios(List<Repositorio> repositorios) {
+		this.repositorios = repositorios;
+	}
+
+	public char getGenero() {
+		return genero;
 	}
 
 	@Override

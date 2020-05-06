@@ -3,12 +3,16 @@ package com.cloudbook.projeto.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,12 +24,12 @@ public class Repositorio implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nome;
 	private Date data;
 	private String descricao;
 	private boolean visibilidade;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="aluno_id")
 	private Aluno aluno = new Aluno();
