@@ -49,9 +49,9 @@ public class CloubookApplication implements CommandLineRunner{
 		Date data3= sdf.parse("30/02/2020 14:32");
 		
 		//REPOSITORIOS
-		Repositorio r1 = new Repositorio(null,"Repositório Escola",data1,"Repositório para escola",false,a1);
-		Repositorio r2 = new Repositorio(null,"Repositório Escola",data2,"Repositório para escola",false,a2);
-		Repositorio r3 = new Repositorio(null,"Repositório Inglês",data3,"Repositório para curso de inglês",false,a1);
+		Repositorio r1 = new Repositorio(null,"Repositório Escola",data1,"Repositório para escola",a1);
+		Repositorio r2 = new Repositorio(null,"Repositório Escola",data2,"Repositório para escola",a2);
+		Repositorio r3 = new Repositorio(null,"Repositório Inglês",data3,"Repositório para curso de inglês",a1);
 		
 		//ALUNO CONHECENDO REPOSITORIO
 		a1.getRepositorios().addAll(Arrays.asList(r1,r3));

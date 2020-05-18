@@ -11,17 +11,21 @@ import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class AlunoService {
-	
+
 	@Autowired
 	private AlunoRepository repo;
-	
-		public Aluno find(Integer id) {
-			
-			 Optional<Aluno> obj = repo.findById(id);
-			 
-			 return obj.orElseThrow(() -> new ObjectNotFoundException(
-					 "Aluno não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName())); 
-			} 
 
+	public Aluno find(Integer id) {
+
+		Optional<Aluno> obj = repo.findById(id);
+
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Aluno não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName()));
+	}
+	
+	public Aluno insert(Aluno aluno) {
+		aluno.setId(null);
+		return repo.save(aluno);
 	}
 
+}

@@ -27,7 +27,7 @@ public class Repositorio implements Serializable{
 	private String nome;
 	private Date data;
 	private String descricao;
-	private boolean visibilidade;
+	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "repositorio")
@@ -41,13 +41,13 @@ public class Repositorio implements Serializable{
 	
 	}
 
-	public Repositorio(Integer id,String nome, Date data, String descricao, boolean visibilidade, Aluno aluno) {
+	public Repositorio(Integer id,String nome, Date data, String descricao, Aluno aluno) {
 		super();
 		this.id=id;
 		this.nome = nome;
 		this.data = data;
 		this.descricao = descricao;
-		this.visibilidade = visibilidade;
+		
 		this.aluno = aluno;
 	}
 
@@ -82,14 +82,6 @@ public class Repositorio implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public boolean isVisibilidade() {
-		return visibilidade;
-	}
-
-	public void setVisibilidade(boolean visibilidade) {
-		this.visibilidade = visibilidade;
 	}
 
 	public Aluno getAluno() {
