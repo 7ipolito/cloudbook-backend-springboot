@@ -21,7 +21,7 @@ public class RepositorioResource {
 	private RepositorioService service;
 	@RequestMapping(value="/{id}",method =RequestMethod.GET)
 	
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Repositorio> find(@PathVariable Integer id) {
 		
 		Repositorio obj=service.find(id);
 		

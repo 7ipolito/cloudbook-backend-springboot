@@ -27,5 +27,10 @@ public class AlunoService {
 		aluno.setId(null);
 		return repo.save(aluno);
 	}
+	
+	public Aluno update(Aluno aluno) {
+		find(aluno.getId());
+		return repo.save(aluno);
+	}
 
 }

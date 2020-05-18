@@ -24,19 +24,26 @@ public class AlunoResource {
 	private AlunoService service;
 	@RequestMapping(value="/{id}",method =RequestMethod.GET)
 	
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Aluno> find(@PathVariable Integer id) {
 		
 		Aluno obj=service.find(id);
 		
 		return ResponseEntity.ok().body(obj);
 		
 	}
-	
+	//Inserindo Aluno
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Aluno aluno){
 		aluno = service.insert(aluno);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(aluno.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
+				buildAndExpand(aluno.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 		
+	}
+	@RequestMapping(value="/{id}",method =RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Aluno aluno,@PathVariable Integer id ){
+		aluno.setId(id);
+		aluno = service.update(aluno);
+		return ResponseEntity.noContent().build();
 	}
 }
