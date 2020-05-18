@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class Aluno implements Serializable{
 	private String colegio;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "aluno")
+	@OneToMany(mappedBy = "aluno",cascade =CascadeType.ALL)
 	List<Repositorio> repositorios = new ArrayList<>();
 	
 	public Aluno() {

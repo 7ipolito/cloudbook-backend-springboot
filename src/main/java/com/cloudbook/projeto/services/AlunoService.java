@@ -32,5 +32,10 @@ public class AlunoService {
 		find(aluno.getId());
 		return repo.save(aluno);
 	}
+	
+	public void delete(Integer id) {
+		find(id);
+		repo.deleteById(id);
+	}
 
 }
