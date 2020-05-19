@@ -42,6 +42,12 @@ public class CloubookApplication implements CommandLineRunner{
 		Aluno a1 = new Aluno(null,"Allan Hipolito","allanhipolito@gmail.com","212435384",'M',"Iserj");
 		Aluno a2 = new Aluno(null,"Flavio Winovski","winovski@gmail.com","213527382",'M',"CIEP");
 		Aluno a3 = new Aluno(null,"Flávia Rafael","FRafael@gmail.com","213527382",'F',"Faetec");
+		Aluno a4 = new Aluno(null,"Thiago Montenegro","montenegro@gmail.com","213527382",'M',"Iserj");
+		Aluno a5 = new Aluno(null,"Raphael Cocao","RCocao@gmail.com","213527382",'M',"Iserj");
+		Aluno a6 = new Aluno(null,"Yuri Brabo","Ybrabo@gmail.com","213527382",'M',"Iserj");
+		Aluno a7 = new Aluno(null,"Felipe G","força@gmail.com","213527382",'M',"Iserj");
+		
+		
 		
 		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date data1= sdf.parse("06/04/2020 12:32");
@@ -85,7 +91,7 @@ public class CloubookApplication implements CommandLineRunner{
 		Conteudo c4 = new Conteudo(null,"Verbo To Be",data6,TipoConteudo.IMAGEM,d6);
 		Conteudo c5 = new Conteudo(null,"Regência verbal",data7,TipoConteudo.VIDEO,d2);
 		
-		alunorepository.saveAll(Arrays.asList(a2,a1,a3));
+		alunorepository.saveAll(Arrays.asList(a2,a1,a3,a4,a5,a6,a7));
 		repositoriorepository.saveAll(Arrays.asList(r1,r2,r3));
 		disciplinarepository.saveAll(Arrays.asList(d1,d2,d3,d4,d5,d6));
 		conteudorepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5));
