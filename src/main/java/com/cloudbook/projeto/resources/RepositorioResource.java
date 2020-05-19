@@ -1,7 +1,8 @@
 package com.cloudbook.projeto.resources;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudbook.projeto.domain.Repositorio;
+import com.cloudbook.projeto.domain.dto.RepositorioDTO;
 import com.cloudbook.projeto.services.RepositorioService;
 
 @RestController
@@ -28,5 +30,13 @@ public class RepositorioResource {
 		return ResponseEntity.ok().body(obj);
 		
 	
+	}
+	
+	@RequestMapping(method =RequestMethod.GET)
+	public ResponseEntity<List<RepositorioDTO>> findAll() {
+		List<Repositorio> list =service.findAll();
+		List<RepositorioDTO> listDto = list.stream().map(obj -> new RepositorioDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+		
 	}
 }

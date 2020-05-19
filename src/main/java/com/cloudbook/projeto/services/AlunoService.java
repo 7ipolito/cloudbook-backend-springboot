@@ -1,5 +1,6 @@
 package com.cloudbook.projeto.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,10 @@ public class AlunoService {
 	public void delete(Integer id) {
 		find(id);
 		repo.deleteById(id);
+	}
+	
+	public List<Aluno> findAll(){
+		return repo.findAll();
 	}
 
 }

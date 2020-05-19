@@ -50,4 +50,11 @@ public class AlunoResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(method =RequestMethod.GET)
+	public ResponseEntity<List<Aluno>> findAll() {
+		List<Aluno> list =service.findAll();
+		return ResponseEntity.ok().body(list);
+		
+	}
 }

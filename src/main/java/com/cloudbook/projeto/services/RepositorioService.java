@@ -1,10 +1,12 @@
 package com.cloudbook.projeto.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.repositories.RepositorioRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
@@ -22,6 +24,10 @@ public class RepositorioService {
 			 return obj.orElseThrow(() -> new ObjectNotFoundException(
 					 "Repositorio não encontrado! Id: " + id + ", Tipo: " + Repositorio.class.getName())); 
 			} 
+		
+		public List<Repositorio> findAll(){
+			return repo.findAll();
+		}
 
 	}
 
