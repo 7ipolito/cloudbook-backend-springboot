@@ -85,7 +85,7 @@ public class CloubookApplication implements CommandLineRunner{
 		Conteudo c4 = new Conteudo(null,"Verbo To Be",data6,TipoConteudo.IMAGEM,d6);
 		Conteudo c5 = new Conteudo(null,"Regência verbal",data7,TipoConteudo.VIDEO,d2);
 		
-		alunorepository.saveAll(Arrays.asList(a1,a2,a3));
+		alunorepository.saveAll(Arrays.asList(a2,a1,a3));
 		repositoriorepository.saveAll(Arrays.asList(r1,r2,r3));
 		disciplinarepository.saveAll(Arrays.asList(d1,d2,d3,d4,d5,d6));
 		conteudorepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5));

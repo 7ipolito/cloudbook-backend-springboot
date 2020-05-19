@@ -9,4 +9,6 @@ import com.cloudbook.projeto.domain.Repositorio;
 @Repository
 public interface RepositorioRepository extends JpaRepository<Repositorio, Integer>{
 
+	
+	
 }
