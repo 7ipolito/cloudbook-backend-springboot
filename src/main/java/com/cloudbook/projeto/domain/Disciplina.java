@@ -25,7 +25,7 @@ public class Disciplina implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="repositorio_id")
 	private Repositorio repositorio = new Repositorio();
 	

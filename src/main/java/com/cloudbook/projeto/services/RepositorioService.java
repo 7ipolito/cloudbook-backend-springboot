@@ -28,6 +28,21 @@ public class RepositorioService {
 					 "Repositorio não encontrado! Id: " + id + ", Tipo: " + Repositorio.class.getName())); 
 			} 
 		
+		public Repositorio insert(Repositorio repositorio) {
+			repositorio.setId(null);
+			return repo.save(repositorio);
+		}
+		
+		public Repositorio update(Repositorio repositorio) {
+			find(repositorio.getId());
+			return repo.save(repositorio);
+		}
+		
+		public void delete(Integer id) {
+			find(id);
+			repo.deleteById(id);
+		}
+		
 		public List<Repositorio> findAll(){
 			return repo.findAll();
 		}

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Aluno;
+import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.repositories.AlunoRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
@@ -46,5 +47,10 @@ public class AlunoService {
 		return repo.findAll();
 	}
 
+	public Page<Aluno> findPage(Integer page, Integer linesPerPage,String orderBy,String direction){
+		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
+		return repo.findAll(pageRequest);
+		
+	}
 	
 }

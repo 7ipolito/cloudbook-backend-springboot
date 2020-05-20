@@ -31,10 +31,10 @@ public class Repositorio implements Serializable{
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "repositorio", cascade =CascadeType.ALL)
+	@OneToMany(mappedBy = "repositorio", cascade=CascadeType.ALL)
 	private List<Disciplina> disciplinas = new ArrayList<>();
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="aluno_id")
 	private Aluno aluno = new Aluno();
 	

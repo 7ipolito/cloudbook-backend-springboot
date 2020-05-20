@@ -7,7 +7,10 @@ import java.util.Date;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
 import com.cloudbook.projeto.domain.enums.TipoConteudo;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,18 +26,19 @@ public class Conteudo implements Serializable{
 	private String assunto;
 	private Date data_criacao;
 	private Integer tipo;
+
 	
 	@ManyToOne
 	@JoinColumn(name="disciplina_id")
 	private Disciplina disciplina = new Disciplina();
 
-	public Conteudo(Integer id, String assunto, Date data_criacao, TipoConteudo tipo, Disciplina repositorio) {
+	public Conteudo(Integer id, String assunto, Date data_criacao, TipoConteudo tipo, Disciplina disciplina) {
 		super();
 		this.id = id;
 		this.assunto = assunto;
 		this.data_criacao = data_criacao;
-		this.tipo = tipo.getCod();
-		this.disciplina = repositorio;
+		this.tipo = (tipo==null)?null:tipo.getCod();
+		this.disciplina = disciplina;
 	}
 	
 	public Conteudo() {
@@ -65,6 +69,15 @@ public class Conteudo implements Serializable{
 		this.data_criacao = data_criacao;
 	}
 
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisiplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+	
 	public TipoConteudo getTipo() {
 		return TipoConteudo.toEnum(tipo);
 	}
@@ -72,15 +85,6 @@ public class Conteudo implements Serializable{
 	public void setTipo(TipoConteudo tipo) {
 		this.tipo = tipo.getCod();
 	}
-
-	public Disciplina getRepositorio() {
-		return disciplina;
-	}
-
-	public void setRepositorio(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-	
 	
 	
 	

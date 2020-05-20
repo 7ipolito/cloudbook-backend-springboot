@@ -29,7 +29,7 @@ public class Aluno implements Serializable{
 	private String colegio;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "aluno",cascade =CascadeType.ALL)
+	@OneToMany(mappedBy = "aluno", cascade =CascadeType.ALL)
 	List<Repositorio> repositorios = new ArrayList<>();
 	
 	public Aluno() {
