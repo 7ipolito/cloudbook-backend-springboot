@@ -9,8 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Disciplina;
 import com.cloudbook.projeto.domain.Repositorio;
+import com.cloudbook.projeto.domain.dto.AlunoDTO;
+import com.cloudbook.projeto.domain.dto.DisciplinaDTO;
 import com.cloudbook.projeto.domain.Disciplina;
 import com.cloudbook.projeto.repositories.DisciplinaRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
@@ -52,6 +55,11 @@ public class DisciplinaService {
 		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
 		return repo.findAll(pageRequest);
 		
+	}
+	
+	public Disciplina fromDTO(DisciplinaDTO objDto) {
+		
+		return new Disciplina(objDto.getId(),objDto.getNome(),objDto.getRepositorio());
 	}
 	
 

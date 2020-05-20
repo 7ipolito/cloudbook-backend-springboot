@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cloudbook.projeto.domain.Aluno;
-import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.dto.AlunoDTO;
-import com.cloudbook.projeto.domain.dto.RepositorioDTO;
 import com.cloudbook.projeto.services.AlunoService;
 
 @RestController
@@ -36,17 +36,19 @@ public class AlunoResource {
 	}
 	//Inserindo Aluno
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Aluno aluno){
-		aluno = service.insert(aluno);
+	public ResponseEntity<Void> insert(@Valid @RequestBody AlunoDTO alunoDto){
+		Aluno obj = service.fromDTO(alunoDto);
+		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
-				buildAndExpand(aluno.getId()).toUri();
+				buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 		
 	}
 	@RequestMapping(value="/{id}",method =RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Aluno aluno,@PathVariable Integer id ){
-		aluno.setId(id);
-		aluno = service.update(aluno);
+	public ResponseEntity<Void> update(@Valid @RequestBody AlunoDTO alunoDto,@PathVariable Integer id ){
+		Aluno obj = service.fromDTO(alunoDto);
+		obj.setId(id);
+		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	

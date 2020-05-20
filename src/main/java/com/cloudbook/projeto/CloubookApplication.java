@@ -39,13 +39,13 @@ public class CloubookApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		//ALUNOS
-		Aluno a1 = new Aluno(null,"Allan Hipolito","allanhipolito@gmail.com","212435384",'M',"Iserj");
-		Aluno a2 = new Aluno(null,"Flavio Winovski","winovski@gmail.com","213527382",'M',"CIEP");
-		Aluno a3 = new Aluno(null,"Flávia Rafael","FRafael@gmail.com","213527382",'F',"Faetec");
-		Aluno a4 = new Aluno(null,"Thiago Montenegro","montenegro@gmail.com","213527382",'M',"Iserj");
-		Aluno a5 = new Aluno(null,"Raphael Cocao","RCocao@gmail.com","213527382",'M',"Iserj");
-		Aluno a6 = new Aluno(null,"Yuri Brabo","Ybrabo@gmail.com","213527382",'M',"Iserj");
-		Aluno a7 = new Aluno(null,"Felipe G","força@gmail.com","213527382",'M',"Iserj");
+		Aluno a1 = new Aluno(null,"Allan Hipolito","allanhipolito@gmail.com","212435384","M","Iserj");
+		Aluno a2 = new Aluno(null,"Flavio Winovski","winovski@gmail.com","213527382","M","CIEP");
+		Aluno a3 = new Aluno(null,"Flávia Rafael","FRafael@gmail.com","213527382","F","Faetec");
+		Aluno a4 = new Aluno(null,"Thiago Montenegro","montenegro@gmail.com","213527382","M","Iserj");
+		Aluno a5 = new Aluno(null,"Raphael Cocao","RCocao@gmail.com","213527382","M","Iserj");
+		Aluno a6 = new Aluno(null,"Yuri Brabo","Ybrabo@gmail.com","213527382","M","Iserj");
+		Aluno a7 = new Aluno(null,"Felipe G","força@gmail.com","213527382","M","Iserj");
 		
 		
 		

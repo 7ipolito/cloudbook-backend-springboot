@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -36,18 +38,19 @@ public class DisciplinaResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Disciplina disciplina) {
-		disciplina = service.insert(disciplina);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(disciplina.getId())
-				.toUri();
+	public ResponseEntity<Void> insert(@Valid @RequestBody DisciplinaDTO disDto){
+		Disciplina obj = service.fromDTO(disDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
+				buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
-
+		
 	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Disciplina disciplina, @PathVariable Integer id) {
-		disciplina.setId(id);
-		disciplina = service.update(disciplina);
+	@RequestMapping(value="/{id}",method =RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody DisciplinaDTO disDto,@PathVariable Integer id ){
+		Disciplina obj = service.fromDTO(disDto);
+		obj.setId(id);
+		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 

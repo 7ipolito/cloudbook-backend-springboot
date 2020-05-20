@@ -3,7 +3,12 @@ package com.cloudbook.projeto.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.cloudbook.projeto.domain.Conteudo;
+import com.cloudbook.projeto.domain.Disciplina;
 import com.cloudbook.projeto.domain.enums.TipoConteudo;
 
 public class ConteudoDTO implements Serializable{
@@ -12,15 +17,26 @@ public class ConteudoDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String assunto;
+	
+	
 	private Date data_criacao;
+	
 	private Integer tipo;
+	
+	private Disciplina disciplina;
 	
 	public ConteudoDTO() {
 	
 	}
 	
 	public ConteudoDTO(Conteudo conteudo) {
+		id = conteudo.getId();
 		assunto = conteudo.getAssunto();
 		data_criacao= conteudo.getData_criacao();
 		tipo = (conteudo.getTipo()==null)?null:conteudo.getTipo().getCod();
@@ -48,6 +64,22 @@ public class ConteudoDTO implements Serializable{
 
 	public void setTipo(TipoConteudo tipo) {
 		this.tipo = tipo.getCod();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 	

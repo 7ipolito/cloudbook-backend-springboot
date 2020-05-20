@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Conteudo;
 import com.cloudbook.projeto.domain.Disciplina;
 import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.Conteudo;
+import com.cloudbook.projeto.domain.dto.AlunoDTO;
 import com.cloudbook.projeto.domain.dto.ConteudoDTO;
 import com.cloudbook.projeto.repositories.ConteudoRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
@@ -65,6 +67,11 @@ public class ConteudoService {
 		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
 		return repo.findAll(pageRequest);
 		
+	}
+	
+public Conteudo fromDTO(ConteudoDTO objDto) {
+		
+		return new Conteudo(objDto.getId(),objDto.getAssunto(),objDto.getData_criacao(),objDto.getTipo(),objDto.getDisciplina());
 	}
 	
 	

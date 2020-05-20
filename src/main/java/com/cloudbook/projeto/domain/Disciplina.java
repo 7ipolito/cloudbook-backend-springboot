@@ -25,12 +25,12 @@ public class Disciplina implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name="repositorio_id")
 	private Repositorio repositorio = new Repositorio();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "disciplina",cascade =CascadeType.ALL)
+	@OneToMany(mappedBy = "disciplina")
 	private List<Conteudo> conteudos = new ArrayList<>();
 	
 	public Disciplina() {
@@ -76,6 +76,8 @@ public class Disciplina implements Serializable{
 	public void setRepositorio(Repositorio repositorio) {
 		this.repositorio = repositorio;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {

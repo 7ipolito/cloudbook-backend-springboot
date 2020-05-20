@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -36,18 +38,19 @@ public class ConteudoResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Conteudo conteudo) {
-		conteudo = service.insert(conteudo);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(conteudo.getId())
-				.toUri();
+	public ResponseEntity<Void> insert(@Valid @RequestBody ConteudoDTO cDto){
+		Conteudo obj = service.fromDTO(cDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
+				buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
-
+		
 	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Conteudo disciplina, @PathVariable Integer id) {
-		disciplina.setId(id);
-		disciplina = service.update(disciplina);
+	@RequestMapping(value="/{id}",method =RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody ConteudoDTO cDto,@PathVariable Integer id ){
+		Conteudo obj = service.fromDTO(cDto);
+		obj.setId(id);
+		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 

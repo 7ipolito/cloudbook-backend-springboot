@@ -2,28 +2,53 @@ package com.cloudbook.projeto.domain.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.cloudbook.projeto.domain.Aluno;
 
 public class AlunoDTO implements Serializable{
 	
 private static final long serialVersionUID = 1L;
 	
+	private Integer id;
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String nome;
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String email;
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String telefone;
-	private char genero;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	private String genero;
+	
 	private String colegio;
+	
+	
 	
 	public AlunoDTO() {
 	
 	}
 	
 	public AlunoDTO(Aluno obj) {
+		id = obj.getId();
 		nome=obj.getNome();
 		email = obj.getEmail();
 		telefone = obj.getTelefone();
 		genero = obj.getGenero();
 		colegio=obj.getColegio();
+	}
+
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -50,11 +75,11 @@ private static final long serialVersionUID = 1L;
 		this.telefone = telefone;
 	}
 
-	public char getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
-	public void setGenero(char genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 

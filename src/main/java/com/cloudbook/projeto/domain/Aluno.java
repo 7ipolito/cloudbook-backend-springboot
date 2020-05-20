@@ -25,7 +25,7 @@ public class Aluno implements Serializable{
 	private String nome;
 	private String email;
 	private String telefone;
-	private char genero;
+	private String genero;
 	private String colegio;
 
 	@JsonIgnore
@@ -36,7 +36,7 @@ public class Aluno implements Serializable{
 
 	}
 
-	public Aluno(Integer id,String nome, String email, String telefone, char genero, String colegio) {
+	public Aluno(Integer id,String nome, String email, String telefone, String genero, String colegio) {
 		super();
 		this.id=id;
 		this.nome = nome;
@@ -97,11 +97,11 @@ public class Aluno implements Serializable{
 		this.telefone = telefone;
 	}
 
-	public char isGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
-	public void setGenero(char genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 
@@ -123,9 +123,7 @@ public class Aluno implements Serializable{
 		this.repositorios = repositorios;
 	}
 
-	public char getGenero() {
-		return genero;
-	}
+	
 
 	@Override
 	public boolean equals(Object obj) {

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Repositorio;
+import com.cloudbook.projeto.domain.dto.AlunoDTO;
+import com.cloudbook.projeto.domain.dto.RepositorioDTO;
 import com.cloudbook.projeto.repositories.RepositorioRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
@@ -51,6 +53,12 @@ public class RepositorioService {
 			PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
 			return repo.findAll(pageRequest);
 			
+		}
+		
+		public Repositorio fromDTO(RepositorioDTO objDto) {
+			
+			return new Repositorio(objDto.getId(),objDto.getNome(),
+					objDto.getData(),objDto.getDescricao(),objDto.getAluno());
 		}
 
 	}

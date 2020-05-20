@@ -3,15 +3,31 @@ package com.cloudbook.projeto.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.lang.NonNull;
+
+import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Repositorio;
 
 public class RepositorioDTO implements Serializable{
 private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String nome;
+	
+	
 	private Date data;
+	
 	private String descricao;
+	
+	
+	private Aluno aluno;
 	
 	public RepositorioDTO() {
 	
@@ -39,6 +55,14 @@ private static final long serialVersionUID = 1L;
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
 
 	public Date getData() {
 		return data;
@@ -55,6 +79,8 @@ private static final long serialVersionUID = 1L;
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
 	
 	
 }
