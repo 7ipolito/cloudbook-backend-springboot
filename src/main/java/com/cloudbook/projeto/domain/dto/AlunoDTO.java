@@ -2,6 +2,7 @@ package com.cloudbook.projeto.domain.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -17,6 +18,7 @@ private static final long serialVersionUID = 1L;
 	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String nome;
 	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Email(message="Email Inválido")
 	private String email;
 	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String telefone;

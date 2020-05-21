@@ -43,37 +43,44 @@ public class ConteudoService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Conteudo não encontrado! Id: " + id + ", Tipo: " + Conteudo.class.getName()));
 	}
-	
+
 	public Conteudo insert(Conteudo conteudo) {
 		conteudo.setId(null);
 		return repo.save(conteudo);
 	}
-	
+
 	public Conteudo update(Conteudo conteudo) {
-		find(conteudo.getId());
-		return repo.save(conteudo);
+		Conteudo newobj = find(conteudo.getId());
+		updateData(newobj, conteudo);
+		return repo.save(newobj);
 	}
-	
+
 	public void delete(Integer id) {
 		find(id);
 		repo.deleteById(id);
 	}
-	
-	public List<Conteudo> findAll(){
+
+	public List<Conteudo> findAll() {
 		return repo.findAll();
 	}
-	
-	public Page<Conteudo> findPage(Integer page, Integer linesPerPage,String orderBy,String direction){
-		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
+
+	public Page<Conteudo> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
-		
+
 	}
-	
-public Conteudo fromDTO(ConteudoDTO objDto) {
-		
-		return new Conteudo(objDto.getId(),objDto.getAssunto(),objDto.getData_criacao(),objDto.getTipo(),objDto.getDisciplina());
+
+	public Conteudo fromDTO(ConteudoDTO objDto) {
+
+		return new Conteudo(objDto.getId(), objDto.getAssunto(), objDto.getData_criacao(), objDto.getTipo(), null);
 	}
-	
-	
+
+	private void updateData(Conteudo newobj, Conteudo obj) {
+		newobj.setAssunto(obj.getAssunto());
+		newobj.setData_criacao(obj.getData_criacao());
+		newobj.setTipo(obj.getTipo());
+		
+
+	}
 
 }

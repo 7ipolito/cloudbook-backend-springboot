@@ -21,13 +21,14 @@ private static final long serialVersionUID = 1L;
 	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String nome;
 	
-	
+	@NotNull
 	private Date data;
 	
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String descricao;
 	
 	
-	private Aluno aluno;
+	
 	
 	public RepositorioDTO() {
 	
@@ -56,13 +57,7 @@ private static final long serialVersionUID = 1L;
 		this.nome = nome;
 	}
 	
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
+	
 
 	public Date getData() {
 		return data;

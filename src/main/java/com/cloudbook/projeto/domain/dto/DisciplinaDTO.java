@@ -18,7 +18,7 @@ public class DisciplinaDTO implements Serializable{
 	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String nome;
 
-	private Repositorio repositorio = new Repositorio();
+	
 	
 	public DisciplinaDTO() {
 		
@@ -42,13 +42,6 @@ public class DisciplinaDTO implements Serializable{
 	}
 
 	
-	public Repositorio getRepositorio() {
-		return repositorio;
-	}
-
-	public void setRepositorio(Repositorio repositorio) {
-		this.repositorio = repositorio;
-	}
 
 	public void setId(Integer id) {
 		this.id = id;

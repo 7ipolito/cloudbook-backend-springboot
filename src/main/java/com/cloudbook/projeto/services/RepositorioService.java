@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+
 import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.dto.AlunoDTO;
@@ -36,8 +37,9 @@ public class RepositorioService {
 		}
 		
 		public Repositorio update(Repositorio repositorio) {
-			find(repositorio.getId());
-			return repo.save(repositorio);
+			Repositorio newobj =find(repositorio.getId());
+			updateData(newobj,repositorio);
+			return repo.save(newobj);
 		}
 		
 		public void delete(Integer id) {
@@ -58,8 +60,17 @@ public class RepositorioService {
 		public Repositorio fromDTO(RepositorioDTO objDto) {
 			
 			return new Repositorio(objDto.getId(),objDto.getNome(),
-					objDto.getData(),objDto.getDescricao(),objDto.getAluno());
+					objDto.getData(),objDto.getDescricao(),null);
 		}
+		
+
+		private void updateData(Repositorio newobj,Repositorio obj) {
+			newobj.setNome(obj.getNome());
+			newobj.setData(obj.getData());
+			newobj.setDescricao(obj.getDescricao());
+			
+		}
+		
 
 	}
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -24,12 +25,13 @@ public class ConteudoDTO implements Serializable{
 	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String assunto;
 	
-	
+	@NotNull
 	private Date data_criacao;
 	
+	@NotNull
 	private Integer tipo;
 	
-	private Disciplina disciplina;
+	
 	
 	public ConteudoDTO() {
 	
@@ -72,14 +74,6 @@ public class ConteudoDTO implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
 	}
 	
 	

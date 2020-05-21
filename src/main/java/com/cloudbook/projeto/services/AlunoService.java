@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Aluno;
+import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.dto.AlunoDTO;
 import com.cloudbook.projeto.repositories.AlunoRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
@@ -34,8 +35,10 @@ public class AlunoService {
 	}
 	
 	public Aluno update(Aluno aluno) {
-		find(aluno.getId());
-		return repo.save(aluno);
+		Aluno newobj =find(aluno.getId());
+		updateData(newobj,aluno);
+		return repo.save(newobj);
+		
 	}
 	
 	public void delete(Integer id) {
@@ -59,4 +62,13 @@ public class AlunoService {
 		objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio());
 	}
 	
+	private void updateData(Aluno newobj,Aluno obj) {
+		newobj.setNome(obj.getNome());
+		newobj.setEmail(obj.getEmail());
+		newobj.setGenero(obj.getGenero());
+		newobj.setTelefone(obj.getTelefone());
+		newobj.setColegio(obj.getColegio());
+
+		
+	}
 }

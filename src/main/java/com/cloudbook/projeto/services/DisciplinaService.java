@@ -38,8 +38,9 @@ public class DisciplinaService {
 	}
 	
 	public Disciplina update(Disciplina disciplina) {
-		find(disciplina.getId());
-		return repo.save(disciplina);
+		Disciplina newobj =find(disciplina.getId());
+		updateData(newobj,disciplina);
+		return repo.save(newobj);
 	}
 	
 	public void delete(Integer id) {
@@ -59,8 +60,13 @@ public class DisciplinaService {
 	
 	public Disciplina fromDTO(DisciplinaDTO objDto) {
 		
-		return new Disciplina(objDto.getId(),objDto.getNome(),objDto.getRepositorio());
+		return new Disciplina(objDto.getId(),objDto.getNome(),null);
 	}
 	
+	private void updateData(Disciplina newobj,Disciplina obj) {
+		newobj.setNome(obj.getNome());
+	
+		
+	}
 
 }
