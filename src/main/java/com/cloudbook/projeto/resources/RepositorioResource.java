@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Repositorio;
-import com.cloudbook.projeto.domain.Repositorio;
-import com.cloudbook.projeto.domain.dto.AlunoDTO;
 import com.cloudbook.projeto.domain.dto.RepositorioDTO;
+import com.cloudbook.projeto.domain.dto.RepositorioNewDTO;
 import com.cloudbook.projeto.services.RepositorioService;
 
 @RestController
@@ -42,7 +40,7 @@ public class RepositorioResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody RepositorioDTO repoDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody RepositorioNewDTO repoDto){
 		Repositorio obj = service.fromDTO(repoDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").

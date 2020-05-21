@@ -9,11 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-
 import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Repositorio;
-import com.cloudbook.projeto.domain.dto.AlunoDTO;
 import com.cloudbook.projeto.domain.dto.RepositorioDTO;
+import com.cloudbook.projeto.domain.dto.RepositorioNewDTO;
 import com.cloudbook.projeto.repositories.RepositorioRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
@@ -61,6 +60,15 @@ public class RepositorioService {
 			
 			return new Repositorio(objDto.getId(),objDto.getNome(),
 					objDto.getData(),objDto.getDescricao(),null);
+		}
+		
+
+		public Repositorio fromDTO(RepositorioNewDTO objDto) {
+			Aluno aluno = new Aluno (null,objDto.getNome_aluno(),objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio());	
+			Repositorio repositorio= new Repositorio(null,objDto.getNome(),objDto.getData(),objDto.getDescricao(),aluno);
+			aluno.getRepositorios().add(repositorio);
+			return repositorio;
+		
 		}
 		
 
