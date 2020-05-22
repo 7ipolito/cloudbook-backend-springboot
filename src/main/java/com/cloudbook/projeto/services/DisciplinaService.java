@@ -9,12 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Disciplina;
-import com.cloudbook.projeto.domain.Repositorio;
-import com.cloudbook.projeto.domain.dto.AlunoDTO;
 import com.cloudbook.projeto.domain.dto.DisciplinaDTO;
-import com.cloudbook.projeto.domain.Disciplina;
+import com.cloudbook.projeto.domain.dto.DisciplinaNewDTO;
 import com.cloudbook.projeto.repositories.DisciplinaRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
@@ -63,6 +60,14 @@ public class DisciplinaService {
 		return new Disciplina(objDto.getId(),objDto.getNome(),null);
 	}
 	
+	public Disciplina fromDTO(DisciplinaNewDTO objDto) {
+		
+		
+		Disciplina disciplina = new Disciplina (null,objDto.getNome(),objDto.getRepositorio());	
+		
+		
+		return disciplina;
+	}
 	private void updateData(Disciplina newobj,Disciplina obj) {
 		newobj.setNome(obj.getNome());
 	

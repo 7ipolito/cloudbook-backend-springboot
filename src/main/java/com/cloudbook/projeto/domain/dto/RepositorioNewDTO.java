@@ -3,10 +3,7 @@ package com.cloudbook.projeto.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
+import com.cloudbook.projeto.domain.Aluno;
 
 public class RepositorioNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -16,14 +13,8 @@ public class RepositorioNewDTO implements Serializable{
 	private String descricao;
 	
 
-	private String nome_aluno;
-	private String email;
-	private String telefone;
-	private String genero;
-	private String colegio;
+	private Aluno aluno= new Aluno();
 	
-	
-
 	public RepositorioNewDTO() {
 	
 	}
@@ -52,44 +43,12 @@ public class RepositorioNewDTO implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public String getNome_aluno() {
-		return nome_aluno;
+	public Aluno getAluno() {
+		return aluno;
 	}
 
-	public void setNome_aluno(String nome_aluno) {
-		this.nome_aluno = nome_aluno;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-
-	public String getColegio() {
-		return colegio;
-	}
-
-	public void setColegio(String colegio) {
-		this.colegio = colegio;
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 	

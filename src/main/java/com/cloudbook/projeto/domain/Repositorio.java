@@ -34,7 +34,7 @@ public class Repositorio implements Serializable{
 	@OneToMany(mappedBy = "repositorio", cascade=CascadeType.ALL)
 	private List<Disciplina> disciplinas = new ArrayList<>();
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name="aluno_id")
 	private Aluno aluno = new Aluno();
 	

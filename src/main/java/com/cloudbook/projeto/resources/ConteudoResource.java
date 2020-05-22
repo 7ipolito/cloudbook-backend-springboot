@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cloudbook.projeto.domain.Conteudo;
-import com.cloudbook.projeto.domain.Disciplina;
 import com.cloudbook.projeto.domain.dto.ConteudoDTO;
-import com.cloudbook.projeto.domain.dto.DisciplinaDTO;
+import com.cloudbook.projeto.domain.dto.ConteudoNewDTO;
 import com.cloudbook.projeto.services.ConteudoService;
 
 @RestController
@@ -38,7 +37,7 @@ public class ConteudoResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ConteudoDTO cDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody ConteudoNewDTO cDto){
 		Conteudo obj = service.fromDTO(cDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").

@@ -64,9 +64,9 @@ public class RepositorioService {
 		
 
 		public Repositorio fromDTO(RepositorioNewDTO objDto) {
-			Aluno aluno = new Aluno (null,objDto.getNome_aluno(),objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio());	
-			Repositorio repositorio= new Repositorio(null,objDto.getNome(),objDto.getData(),objDto.getDescricao(),aluno);
-			aluno.getRepositorios().add(repositorio);
+				
+			Repositorio repositorio= new Repositorio(null,objDto.getNome(),objDto.getData(),objDto.getDescricao(),objDto.getAluno());
+			
 			return repositorio;
 		
 		}

@@ -25,8 +25,10 @@ public class ConteudoDTO implements Serializable{
 	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String assunto;
 	
-	@NotNull
+	
 	private Date data_criacao;
+	
+	//private Disciplina 
 	
 	@NotNull
 	private Integer tipo;

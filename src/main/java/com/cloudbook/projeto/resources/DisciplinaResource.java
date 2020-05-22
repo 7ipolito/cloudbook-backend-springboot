@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cloudbook.projeto.domain.Disciplina;
-import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.dto.DisciplinaDTO;
-import com.cloudbook.projeto.domain.dto.RepositorioDTO;
+import com.cloudbook.projeto.domain.dto.DisciplinaNewDTO;
 import com.cloudbook.projeto.services.DisciplinaService;
 
 @RestController
@@ -38,7 +37,7 @@ public class DisciplinaResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody DisciplinaDTO disDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody DisciplinaNewDTO disDto){
 		Disciplina obj = service.fromDTO(disDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
