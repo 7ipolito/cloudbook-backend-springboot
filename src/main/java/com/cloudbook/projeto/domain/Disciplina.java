@@ -33,7 +33,7 @@ public class Disciplina implements Serializable{
 	private Repositorio repositorio = new Repositorio();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "disciplina")
+	@OneToMany(mappedBy = "disciplina", cascade=CascadeType.ALL)
 	private List<Conteudo> conteudos = new ArrayList<>();
 	
 	public Disciplina() {
