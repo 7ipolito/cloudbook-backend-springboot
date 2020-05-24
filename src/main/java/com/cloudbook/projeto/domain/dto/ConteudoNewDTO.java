@@ -2,11 +2,13 @@ package com.cloudbook.projeto.domain.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.cloudbook.projeto.domain.Disciplina;
 import com.cloudbook.projeto.domain.enums.TipoConteudo;
 
 public class ConteudoNewDTO {
-
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String assunto;
 	private Date data_criacao;
 	private Integer tipo;

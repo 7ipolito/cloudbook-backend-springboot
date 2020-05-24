@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.dto.AlunoDTO;
+import com.cloudbook.projeto.domain.dto.AlunoNewDTO;
 import com.cloudbook.projeto.services.AlunoService;
 
 @RestController
@@ -36,7 +37,7 @@ public class AlunoResource {
 	}
 	//Inserindo Aluno
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody AlunoDTO alunoDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody AlunoNewDTO alunoDto){
 		Aluno obj = service.fromDTO(alunoDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").

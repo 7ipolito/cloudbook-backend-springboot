@@ -3,11 +3,14 @@ package com.cloudbook.projeto.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.cloudbook.projeto.domain.Aluno;
 
 public class RepositorioNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String nome;
 	private Date data;
 	private String descricao;

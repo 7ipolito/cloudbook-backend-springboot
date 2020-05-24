@@ -10,7 +10,7 @@ import com.cloudbook.projeto.domain.Repositorio;
 
 public class DisciplinaNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String nome;
 	
 	@NotNull

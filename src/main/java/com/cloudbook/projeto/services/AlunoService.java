@@ -10,8 +10,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Aluno;
-import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.dto.AlunoDTO;
+import com.cloudbook.projeto.domain.dto.AlunoNewDTO;
 import com.cloudbook.projeto.repositories.AlunoRepository;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
@@ -57,6 +57,12 @@ public class AlunoService {
 	}
 	
 	public Aluno fromDTO(AlunoDTO objDto) {
+		
+		return new Aluno(objDto.getId(),objDto.getNome(),
+		objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio());
+	}
+	
+public Aluno fromDTO(AlunoNewDTO objDto) {
 		
 		return new Aluno(objDto.getId(),objDto.getNome(),
 		objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio());

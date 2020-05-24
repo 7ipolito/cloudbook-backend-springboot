@@ -9,11 +9,9 @@ import org.hibernate.validator.constraints.Length;
 
 import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.services.validation.AlunoInsert;
-import com.cloudbook.projeto.services.validation.AlunoUpdate;
 
-
-@AlunoUpdate
-public class AlunoDTO implements Serializable{
+@AlunoInsert
+public class AlunoNewDTO implements Serializable{
 	
 private static final long serialVersionUID = 1L;
 	
@@ -34,11 +32,11 @@ private static final long serialVersionUID = 1L;
 	
 	
 	
-	public AlunoDTO() {
+	public AlunoNewDTO() {
 	
 	}
 	
-	public AlunoDTO(Aluno obj) {
+	public AlunoNewDTO(Aluno obj) {
 		id = obj.getId();
 		nome=obj.getNome();
 		email = obj.getEmail();
@@ -96,7 +94,6 @@ private static final long serialVersionUID = 1L;
 	public void setColegio(String colegio) {
 		this.colegio = colegio;
 	}
-	
 	
 	
 }
