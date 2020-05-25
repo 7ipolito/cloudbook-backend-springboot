@@ -8,10 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.Disciplina;
-import com.cloudbook.projeto.domain.Repositorio;
+
 
 @Repository
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Integer>{

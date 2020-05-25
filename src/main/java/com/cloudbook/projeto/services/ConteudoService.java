@@ -63,21 +63,26 @@ public class ConteudoService {
 
 		return new Conteudo(objDto.getId(), objDto.getAssunto(), objDto.getData_criacao(), objDto.getTipo(), null);
 	}
-	
+
 	public Conteudo fromDTO(ConteudoNewDTO objDto) {
-																								
-		Conteudo conteudo= new Conteudo(null,objDto.getAssunto(),objDto.getData_criacao(),objDto.getTipo(),objDto.getDisciplina());
-		
+
+		Conteudo conteudo = new Conteudo(null, objDto.getAssunto(), objDto.getData_criacao(), objDto.getTipo(),
+				objDto.getDisciplina());
+
 		return conteudo;
-	
+
 	}
 
 	private void updateData(Conteudo newobj, Conteudo obj) {
 		newobj.setAssunto(obj.getAssunto());
 		newobj.setData_criacao(obj.getData_criacao());
 		newobj.setTipo(obj.getTipo());
-		
+	}
 
+	public Page<Conteudo> search(List<Integer> id, Integer page, Integer linesPerPage, String orderBy,
+			String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.search(id, pageRequest);
 	}
 
 }

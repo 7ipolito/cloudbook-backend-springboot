@@ -1,6 +1,7 @@
 package com.cloudbook.projeto.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cloudbook.projeto.domain.Conteudo;
+import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.dto.ConteudoDTO;
 import com.cloudbook.projeto.domain.dto.ConteudoNewDTO;
+import com.cloudbook.projeto.domain.dto.RepositorioDTO;
 import com.cloudbook.projeto.services.ConteudoService;
 
 @RestController
@@ -76,6 +79,22 @@ public class ConteudoResource {
 		Page<ConteudoDTO> listDto = list.map(obj -> new ConteudoDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 
+	}
+	
+	@RequestMapping(value="/findConteudos",method=RequestMethod.GET)
+	public ResponseEntity<Page<ConteudoDTO>> findPage(
+			@RequestParam(value="id", defaultValue="") Integer id,  
+			@RequestParam(value="page", defaultValue="0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue="assunto") String orderBy, 
+			@RequestParam(value="direction", defaultValue="ASC") String direction) {
+		
+		List<Integer> ids = new ArrayList<>();
+		ids.add(id);
+		Page<Conteudo> list = service.search(ids, page, linesPerPage, orderBy, direction);
+		Page<ConteudoDTO> listDto = list.map(obj -> new ConteudoDTO(obj));  
+		return ResponseEntity.ok().body(listDto);
+		
 	}
 	
 }
