@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Disciplina;
+import com.cloudbook.projeto.domain.Repositorio;
 import com.cloudbook.projeto.domain.dto.DisciplinaDTO;
 import com.cloudbook.projeto.domain.dto.DisciplinaNewDTO;
 import com.cloudbook.projeto.repositories.DisciplinaRepository;
@@ -69,9 +70,12 @@ public class DisciplinaService {
 		return disciplina;
 	}
 	private void updateData(Disciplina newobj,Disciplina obj) {
-		newobj.setNome(obj.getNome());
+		newobj.setNome(obj.getNome());	
+	}
 	
-		
+	public Page<Disciplina> search(List<Integer>id,Integer page, Integer linesPerPage,String orderBy,String direction){
+		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
+		return repo.search(id,pageRequest);
 	}
 
 }

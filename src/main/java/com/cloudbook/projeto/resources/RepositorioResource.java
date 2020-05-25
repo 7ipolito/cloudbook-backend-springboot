@@ -83,7 +83,7 @@ public class RepositorioResource {
 		
 	}
 	
-	@RequestMapping(value="/consulta",method=RequestMethod.GET)
+	@RequestMapping(value="/findRepositorios",method=RequestMethod.GET)
 	public ResponseEntity<Page<RepositorioDTO>> findPage(
 			@RequestParam(value="id", defaultValue="") Integer id,  
 			@RequestParam(value="page", defaultValue="0") Integer page, 
