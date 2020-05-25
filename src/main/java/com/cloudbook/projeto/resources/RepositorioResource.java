@@ -1,6 +1,7 @@
 package com.cloudbook.projeto.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,4 +82,23 @@ public class RepositorioResource {
 		return ResponseEntity.ok().body(listDto);
 		
 	}
+	
+	@RequestMapping(value="/consulta",method=RequestMethod.GET)
+	public ResponseEntity<Page<RepositorioDTO>> findPage(
+			@RequestParam(value="id", defaultValue="") Integer id,  
+			@RequestParam(value="page", defaultValue="0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
+			@RequestParam(value="direction", defaultValue="ASC") String direction) {
+		
+		List<Integer> ids = new ArrayList<>();
+		ids.add(id);
+		Page<Repositorio> list = service.search(ids, page, linesPerPage, orderBy, direction);
+		Page<RepositorioDTO> listDto = list.map(obj -> new RepositorioDTO(obj));  
+		return ResponseEntity.ok().body(listDto);
+		
+	}
+	
 }
+	
+

@@ -95,7 +95,8 @@ public class CloubookApplication implements CommandLineRunner{
 		repositoriorepository.saveAll(Arrays.asList(r1,r2,r3));
 		disciplinarepository.saveAll(Arrays.asList(d1,d2,d3,d4,d5,d6));
 		conteudorepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5));
-		
+	
+		System.out.println("OI");
 	}
 
 }
