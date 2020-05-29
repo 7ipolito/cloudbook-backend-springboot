@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
+
+
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
@@ -33,4 +35,6 @@ public class ResourceExceptionHandler {
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
+	
+	
 }
