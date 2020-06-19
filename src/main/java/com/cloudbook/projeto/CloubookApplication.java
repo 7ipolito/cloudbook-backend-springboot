@@ -20,6 +20,7 @@ import com.cloudbook.projeto.repositories.DisciplinaRepository;
 import com.cloudbook.projeto.repositories.RepositorioRepository;
 
 @SpringBootApplication
+
 public class CloubookApplication implements CommandLineRunner{
 
 	
