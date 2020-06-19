@@ -37,12 +37,12 @@ public class DBService {
 	public void instantiateTestDatabase() throws ParseException {
 		// INSTANCIAÇÃO DE ALUNOS
 		Aluno a1 = new Aluno(null, "Allan Hipolito", "allanhipolito@gmail.com", "212435384", "M", "Iserj",pe.encode("23062003"));
-		
+		a1.addPerfil(Perfil.ADMIN);
 		Aluno a2 = new Aluno(null, "Flavio Winovski", "winovski@gmail.com", "213527382", "M", "CIEP",pe.encode("flavinho"));
 		Aluno a3 = new Aluno(null, "Flávia Rafael", "FRafael@gmail.com", "213527382", "F", "Faetec",pe.encode("flavinha"));
 		Aluno a4 = new Aluno(null, "Thiago Montenegro", "montenegro@gmail.com", "213527382", "M", "Iserj",pe.encode("montenegro2003"));
 		Aluno a5 = new Aluno(null, "Raphael Cocao", "RCocao@gmail.com", "213527382", "M", "Iserj",pe.encode("cocaogostoso"));
-		Aluno a6 = new Aluno(null, "Yuri Brabo", "Ybrabo@gmail.com", "213527382", "M", "Iserj",pe.encode("fini"));
+		Aluno a6 = new Aluno(null, "Yuri Brabo", "nsankdn", "213527382", "M", "Iserj",pe.encode("fini"));
 		Aluno a7 = new Aluno(null, "Felipe G", "força@gmail.com", "213527382", "M", "Iserj",pe.encode("forcag"));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -87,7 +87,7 @@ public class DBService {
 		Conteudo c5 = new Conteudo(null, "Regência verbal", data7, TipoConteudo.VIDEO, d2);
 
 		//ALLAN ADMINISTRADOR DA BRANCH
-		a1.addPerfil(Perfil.ADMIN);
+		
 		
 		alunorepository.saveAll(Arrays.asList(a2, a1, a3, a4, a5, a6, a7));
 		repositoriorepository.saveAll(Arrays.asList(r1, r2, r3));

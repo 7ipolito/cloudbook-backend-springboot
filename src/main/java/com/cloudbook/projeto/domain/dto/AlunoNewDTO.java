@@ -30,7 +30,7 @@ private static final long serialVersionUID = 1L;
 	
 	private String colegio;
 	
-	@NotEmpty
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
 	
 	public String getSenha() {

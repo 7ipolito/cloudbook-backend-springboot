@@ -38,7 +38,7 @@ public class Aluno implements Serializable{
 	private String genero;
 	private String colegio;
 	
-	//Jsonignogre
+	@JsonIgnore
 	private String senha;
 	
 	
