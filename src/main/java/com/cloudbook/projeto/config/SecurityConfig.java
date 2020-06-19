@@ -14,11 +14,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.cloudbook.projeto.security.JWTAuthenticationFilter;
+import com.cloudbook.projeto.security.JWTAuthorizationFilter;
 import com.cloudbook.projeto.security.JWTUtil;
 
 @Configuration
@@ -42,7 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/alunos/**",
 			"/repositorios/**",
 			"/disciplinas/**",
-			"/conteudos/**"
+			"conteudos/**"
+			
+			
 	};
 
 	
@@ -54,13 +59,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         }
 		
 		http.cors().and().csrf().disable();
-			
+		//MUDAR MODIFICAR ACESSO
 		http.authorizeRequests()
-				.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_GET).permitAll()
+				.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 				.antMatchers(PUBLIC_MATCHERS).permitAll()
 				.anyRequest().authenticated();
 		
+		CharacterEncodingFilter filter = new CharacterEncodingFilter(); 
+		filter.setEncoding("UTF-8"); 
+		filter.setForceEncoding(true); 
+		http.addFilterBefore(filter, CsrfFilter.class);
+		
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		//http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
@@ -81,6 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
 	
 	
 }
