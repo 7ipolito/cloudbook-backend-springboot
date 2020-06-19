@@ -2,16 +2,23 @@ package com.cloudbook.projeto.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.cloudbook.projeto.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -34,13 +41,17 @@ public class Aluno implements Serializable{
 	//Jsonignogre
 	private String senha;
 	
-
+	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "aluno", cascade =CascadeType.ALL)
 	List<Repositorio> repositorios = new ArrayList<>();
 	
 	public Aluno() {
-
+		addPerfil(Perfil.ALUNO);
 	}
 
 	public Aluno(Integer id,String nome, String email, String telefone, String genero, String colegio,String senha) {
@@ -52,6 +63,7 @@ public class Aluno implements Serializable{
 		this.senha=senha;
 		this.genero = genero;
 		this.colegio = colegio;
+		addPerfil(Perfil.ALUNO);
 	}
 	
 	//FAVOR APAGAR DEPOIS
@@ -130,6 +142,13 @@ public class Aluno implements Serializable{
 		this.senha = senha;
 	}
 	
+	public Set<Perfil> getPerfis(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
 
 	public List<Repositorio> getRepositorios() {
 		return repositorios;
