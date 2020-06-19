@@ -30,8 +30,17 @@ private static final long serialVersionUID = 1L;
 	
 	private String colegio;
 	
+	@NotEmpty
+	private String senha;
 	
-	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public AlunoNewDTO() {
 	
 	}

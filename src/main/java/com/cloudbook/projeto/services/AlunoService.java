@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Aluno;
@@ -18,6 +19,9 @@ import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 @Service
 public class AlunoService {
 
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	@Autowired
 	private AlunoRepository repo;
 
@@ -59,13 +63,13 @@ public class AlunoService {
 	public Aluno fromDTO(AlunoDTO objDto) {
 		
 		return new Aluno(objDto.getId(),objDto.getNome(),
-		objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio());
+		objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio(),null);
 	}
 	
 public Aluno fromDTO(AlunoNewDTO objDto) {
 		
 		return new Aluno(objDto.getId(),objDto.getNome(),
-		objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio());
+		objDto.getEmail(),objDto.getTelefone(),objDto.getGenero(),objDto.getColegio(),pe.encode(objDto.getSenha()));
 	}
 	
 	private void updateData(Aluno newobj,Aluno obj) {

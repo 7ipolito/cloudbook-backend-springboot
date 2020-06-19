@@ -30,6 +30,10 @@ public class Aluno implements Serializable{
 	private String telefone;
 	private String genero;
 	private String colegio;
+	
+	//Jsonignogre
+	private String senha;
+	
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "aluno", cascade =CascadeType.ALL)
@@ -39,12 +43,13 @@ public class Aluno implements Serializable{
 
 	}
 
-	public Aluno(Integer id,String nome, String email, String telefone, String genero, String colegio) {
+	public Aluno(Integer id,String nome, String email, String telefone, String genero, String colegio,String senha) {
 		super();
 		this.id=id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
+		this.senha=senha;
 		this.genero = genero;
 		this.colegio = colegio;
 	}
@@ -116,6 +121,14 @@ public class Aluno implements Serializable{
 		this.colegio = colegio;
 	}
 	
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 
 	public List<Repositorio> getRepositorios() {
@@ -127,6 +140,7 @@ public class Aluno implements Serializable{
 	}
 
 	
+
 
 	@Override
 	public boolean equals(Object obj) {

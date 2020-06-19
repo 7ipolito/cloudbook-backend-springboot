@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cloudbook.projeto.domain.Aluno;
@@ -21,6 +22,9 @@ import com.cloudbook.projeto.repositories.RepositorioRepository;
 @Service
 public class DBService {
 	@Autowired
+	private BCryptPasswordEncoder pe;
+	
+	@Autowired
 	private AlunoRepository alunorepository;
 	@Autowired
 	private RepositorioRepository repositoriorepository;
@@ -31,13 +35,13 @@ public class DBService {
 
 	public void instantiateTestDatabase() throws ParseException {
 		// INSTANCIAÇÃO DE ALUNOS
-		Aluno a1 = new Aluno(null, "Allan Hipolito", "allanhipolito@gmail.com", "212435384", "M", "Iserj");
-		Aluno a2 = new Aluno(null, "Flavio Winovski", "winovski@gmail.com", "213527382", "M", "CIEP");
-		Aluno a3 = new Aluno(null, "Flávia Rafael", "FRafael@gmail.com", "213527382", "F", "Faetec");
-		Aluno a4 = new Aluno(null, "Thiago Montenegro", "montenegro@gmail.com", "213527382", "M", "Iserj");
-		Aluno a5 = new Aluno(null, "Raphael Cocao", "RCocao@gmail.com", "213527382", "M", "Iserj");
-		Aluno a6 = new Aluno(null, "Yuri Brabo", "Ybrabo@gmail.com", "213527382", "M", "Iserj");
-		Aluno a7 = new Aluno(null, "Felipe G", "força@gmail.com", "213527382", "M", "Iserj");
+		Aluno a1 = new Aluno(null, "Allan Hipolito", "allanhipolito@gmail.com", "212435384", "M", "Iserj",pe.encode("23062003"));
+		Aluno a2 = new Aluno(null, "Flavio Winovski", "winovski@gmail.com", "213527382", "M", "CIEP",pe.encode("flavinho"));
+		Aluno a3 = new Aluno(null, "Flávia Rafael", "FRafael@gmail.com", "213527382", "F", "Faetec",pe.encode("flavinha"));
+		Aluno a4 = new Aluno(null, "Thiago Montenegro", "montenegro@gmail.com", "213527382", "M", "Iserj",pe.encode("montenegro2003"));
+		Aluno a5 = new Aluno(null, "Raphael Cocao", "RCocao@gmail.com", "213527382", "M", "Iserj",pe.encode("cocaogostoso"));
+		Aluno a6 = new Aluno(null, "Yuri Brabo", "Ybrabo@gmail.com", "213527382", "M", "Iserj",pe.encode("fini"));
+		Aluno a7 = new Aluno(null, "Felipe G", "força@gmail.com", "213527382", "M", "Iserj",pe.encode("forcag"));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date data1 = sdf.parse("06/04/2020 12:32");
