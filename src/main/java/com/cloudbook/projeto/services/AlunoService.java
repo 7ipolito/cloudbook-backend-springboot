@@ -13,7 +13,10 @@ import org.springframework.stereotype.Service;
 import com.cloudbook.projeto.domain.Aluno;
 import com.cloudbook.projeto.domain.dto.AlunoDTO;
 import com.cloudbook.projeto.domain.dto.AlunoNewDTO;
+import com.cloudbook.projeto.domain.enums.Perfil;
 import com.cloudbook.projeto.repositories.AlunoRepository;
+import com.cloudbook.projeto.security.UserSS;
+import com.cloudbook.projeto.services.exceptions.AuthorizationException;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -27,6 +30,11 @@ public class AlunoService {
 
 	public Aluno find(Integer id) {
 
+		UserSS user = UserService.authenticated();
+		if(user ==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
 		Optional<Aluno> obj = repo.findById(id);
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
