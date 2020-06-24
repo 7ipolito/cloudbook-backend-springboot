@@ -33,13 +33,7 @@ private static final long serialVersionUID = 1L;
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
 	
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+	
 
 	public AlunoNewDTO() {
 	
@@ -102,6 +96,14 @@ private static final long serialVersionUID = 1L;
 
 	public void setColegio(String colegio) {
 		this.colegio = colegio;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	

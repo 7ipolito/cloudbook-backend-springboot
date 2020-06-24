@@ -8,13 +8,11 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
 @Component
 public class JWTUtil {
-
+	
 	@Value("${jwt.secret}")
 	private String secret;
-	
 	@Value("${jwt.expiration}")
 	private Long expiration;
 	
@@ -25,7 +23,7 @@ public class JWTUtil {
 				.signWith(SignatureAlgorithm.HS512, secret.getBytes())
 				.compact();
 	}
-	
+
 	public boolean tokenValido(String token) {
 		Claims claims = getClaims(token);
 		if (claims != null) {
@@ -56,5 +54,3 @@ public class JWTUtil {
 		}
 	}
 }
-	
-

@@ -60,9 +60,9 @@ public class Aluno implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
-		this.senha=senha;
 		this.genero = genero;
 		this.colegio = colegio;
+		this.senha=senha;
 		addPerfil(Perfil.ALUNO);
 	}
 	
