@@ -37,6 +37,7 @@ public class AlunoResource {
 		
 	}
 	//Inserindo Aluno
+	//REQUISIÇÃO PÚBLICA
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody AlunoNewDTO alunoDto){
 		Aluno obj = service.fromDTO(alunoDto);
@@ -46,6 +47,7 @@ public class AlunoResource {
 		return ResponseEntity.created(uri).build();
 		
 	}
+	//ALUNO SÓ ALTERA ELE MESMO
 	@RequestMapping(value="/{id}",method =RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody AlunoDTO alunoDto,@PathVariable Integer id ){
 		Aluno obj = service.fromDTO(alunoDto);
@@ -54,14 +56,15 @@ public class AlunoResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-
+	//SÓ O ADMIN PODE DELETAR UM CLIENTE
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/{id}",method =RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
-	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method =RequestMethod.GET)
 	public ResponseEntity<List<AlunoDTO>> findAll() {
 		List<Aluno> list =service.findAll();
@@ -70,6 +73,7 @@ public class AlunoResource {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/page",method =RequestMethod.GET)
 	public ResponseEntity<Page<AlunoDTO>> findPage(
 	@RequestParam(value="page", defaultValue = "0") Integer page,
