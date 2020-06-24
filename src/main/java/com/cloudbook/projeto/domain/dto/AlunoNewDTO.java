@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.cloudbook.projeto.domain.Aluno;
+import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 import com.cloudbook.projeto.services.validation.AlunoInsert;
 
 @AlunoInsert
@@ -46,6 +47,7 @@ private static final long serialVersionUID = 1L;
 		telefone = obj.getTelefone();
 		genero = obj.getGenero();
 		colegio=obj.getColegio();
+		senha = obj.getSenha();
 	}
 
 	

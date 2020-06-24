@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_GET = {
-			"/alunos/**",
+			
 			
 	};
 	
@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.addFilterBefore(filter, CsrfFilter.class);
 		
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
-	//	http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
+	http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	

@@ -45,6 +45,7 @@ private static final long serialVersionUID = 1L;
 		telefone = obj.getTelefone();
 		genero = obj.getGenero();
 		colegio=obj.getColegio();
+		
 	}
 
 	
