@@ -17,8 +17,6 @@ import com.cloudbook.projeto.domain.Repositorio;
 public interface RepositorioRepository extends JpaRepository<Repositorio, Integer>{
 
 	
-	
-	
 	@Transactional(readOnly=true)
 	@Query("SELECT obj FROM Repositorio obj WHERE obj.aluno.id = ?1")
 	Page<Repositorio> search(List<Integer>id,  Pageable pageRequest);

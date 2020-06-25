@@ -20,10 +20,11 @@ public class AuthResource {
 	private JWTUtil jwtUtil;
 
 	@RequestMapping(value="/refresh_token", method=RequestMethod.POST)
-	public ResponseEntity<Void> refreshToken(HttpServletResponse response) { 
-		UserSS user = UserService.authenticated();
-		String token = jwtUtil.generateToken(user.getUsername());
-		response.addHeader("Authorization", "Bearer " + token);
-		return ResponseEntity.noContent().build(); } 
-	 
+	public ResponseEntity<Void> refreshToken(HttpServletResponse response) {
+	UserSS user = UserService.authenticated();
+	String token = jwtUtil.generateToken(user.getUsername());
+	response.addHeader("Authorization", "Bearer " + token);
+	return ResponseEntity.noContent().build();
+	}
+	
 }

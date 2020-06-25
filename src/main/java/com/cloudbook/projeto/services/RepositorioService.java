@@ -15,6 +15,8 @@ import com.cloudbook.projeto.domain.dto.RepositorioDTO;
 import com.cloudbook.projeto.domain.dto.RepositorioNewDTO;
 import com.cloudbook.projeto.repositories.AlunoRepository;
 import com.cloudbook.projeto.repositories.RepositorioRepository;
+import com.cloudbook.projeto.security.UserSS;
+import com.cloudbook.projeto.services.exceptions.AuthorizationException;
 import com.cloudbook.projeto.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -25,6 +27,9 @@ public class RepositorioService {
 	
 	@Autowired 
 	private AlunoRepository repo2;
+	
+	@Autowired
+	private AlunoService alunoService;
 	
 	
 		public Repositorio find(Integer id) {
@@ -93,9 +98,13 @@ public class RepositorioService {
 		*/
 
 		public Page<Repositorio> search(List<Integer>id,Integer page, Integer linesPerPage,String orderBy,String direction){
+			
 			PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
+			
 			return repo.search(id,pageRequest);
 		}
+		
+		
 		
 
 	}
