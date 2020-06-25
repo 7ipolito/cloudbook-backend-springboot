@@ -36,8 +36,13 @@ public class AlunoResource {
 		return ResponseEntity.ok().body(obj);
 		
 	}
-	//Inserindo Aluno
-	//REQUISIÇÃO PÚBLICA
+	
+	@RequestMapping(value="/email", method=RequestMethod.GET)
+	public ResponseEntity<Aluno> find(@RequestParam(value="value") String email) {
+		Aluno obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody AlunoNewDTO alunoDto){
 		Aluno obj = service.fromDTO(alunoDto);

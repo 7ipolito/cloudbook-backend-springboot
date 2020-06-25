@@ -61,6 +61,20 @@ public class AlunoService {
 	public List<Aluno> findAll(){
 		return repo.findAll();
 	}
+	
+	public Aluno findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
+		Aluno obj = repo.findByEmail(email);
+		if (obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Aluno.class.getName());
+		}
+		return obj;
+	}
 
 	public Page<Aluno> findPage(Integer page, Integer linesPerPage,String orderBy,String direction){
 		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
