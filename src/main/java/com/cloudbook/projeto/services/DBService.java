@@ -52,7 +52,7 @@ public class DBService {
 
 		// INSTANCIAÇÃO DE REPOSITORIOS
 		Repositorio r1 = new Repositorio(null, "Repositório Escola", data1, "Repositório para escola", a1);
-		Repositorio r2 = new Repositorio(null, "Repositório Escola", data2, "Repositório para escola", a2);
+		Repositorio r2 = new Repositorio(null, "Repositório Iserj", data2, "Repositório para escola", a2);
 		Repositorio r3 = new Repositorio(null, "Repositório Inglês", data3, "Repositório para curso de inglês", a1);
 
 		// ALUNO CONHECENDO REPOSITORIO
@@ -80,11 +80,11 @@ public class DBService {
 		Date data8 = sdf.parse("28/02/2020 14:32");
 
 		//INSTANCIAÇÃO DE CONTEÚDO
-		Conteudo c1 = new Conteudo(null, "Matrizes", data4, TipoConteudo.IMAGEM, d4);
-		Conteudo c2 = new Conteudo(null, "Matrizes", data4, TipoConteudo.ANOTACAO, d4);
-		Conteudo c3 = new Conteudo(null, "Cordados", data5, TipoConteudo.AUDIO, d5);
-		Conteudo c4 = new Conteudo(null, "Verbo To Be", data6, TipoConteudo.IMAGEM, d6);
-		Conteudo c5 = new Conteudo(null, "Regência verbal", data7, TipoConteudo.VIDEO, d2);
+		Conteudo c1 = new Conteudo(null, "Matrizes", data4, TipoConteudo.IMAGEM,"diretorio imagem", d4);
+		Conteudo c2 = new Conteudo(null, "Matrizes", data4, TipoConteudo.ANOTACAO,"Resumo matématica", d4);
+		Conteudo c3 = new Conteudo(null, "Cordados", data5, TipoConteudo.ANOTACAO,"Resumo Biologia", d5);
+		Conteudo c4 = new Conteudo(null, "Verbo To Be", data6, TipoConteudo.IMAGEM,"diretorio imagem ingles", d6);
+		Conteudo c5 = new Conteudo(null, "Regência verbal", data7, TipoConteudo.ANOTACAO,"Resumo portgues", d2);
 
 		//ALLAN ADMINISTRADOR DA BRANCH
 		

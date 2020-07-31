@@ -61,12 +61,12 @@ public class ConteudoService {
 
 	public Conteudo fromDTO(ConteudoDTO objDto) {
 
-		return new Conteudo(objDto.getId(), objDto.getAssunto(), objDto.getData_criacao(), objDto.getTipo(), null);
+		return new Conteudo(objDto.getId(), objDto.getAssunto(), objDto.getData_criacao(), objDto.getTipo(),objDto.getTexto(), null);
 	}
 
 	public Conteudo fromDTO(ConteudoNewDTO objDto) {
 
-		Conteudo conteudo = new Conteudo(null, objDto.getAssunto(), objDto.getData_criacao(), objDto.getTipo(),
+		Conteudo conteudo = new Conteudo(null, objDto.getAssunto(), objDto.getData_criacao(), objDto.getTipo(),objDto.getTexto(),
 				objDto.getDisciplina());
 
 		return conteudo;

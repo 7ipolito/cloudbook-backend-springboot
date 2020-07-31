@@ -29,6 +29,7 @@ private static final long serialVersionUID = 1L;
 	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String genero;
 	
+	@Length(max=80, message ="O tamanho máximo permitido é de 80 caracteres")
 	private String colegio;
 	
 	@NotEmpty(message="Preenchimento obrigatório")

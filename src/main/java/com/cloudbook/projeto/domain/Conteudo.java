@@ -25,6 +25,7 @@ public class Conteudo implements Serializable{
 	private Integer id;
 	private String assunto;
 	private Date data_criacao;
+	private String texto;
 	private Integer tipo;
 
 	
@@ -32,13 +33,14 @@ public class Conteudo implements Serializable{
 	@JoinColumn(name="disciplina_id")
 	private Disciplina disciplina = new Disciplina();
 
-	public Conteudo(Integer id, String assunto, Date data_criacao, TipoConteudo tipo, Disciplina disciplina) {
+	public Conteudo(Integer id, String assunto, Date data_criacao, TipoConteudo tipo,String texto, Disciplina disciplina) {
 		super();
 		this.id = id;
 		this.assunto = assunto;
 		this.data_criacao = data_criacao;
 		this.tipo = (tipo==null)?null:tipo.getCod();
 		this.disciplina = disciplina;
+		this.texto=texto;
 	}
 	
 	public Conteudo() {
@@ -84,6 +86,14 @@ public class Conteudo implements Serializable{
 
 	public void setTipo(TipoConteudo tipo) {
 		this.tipo = tipo.getCod();
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 	
 	

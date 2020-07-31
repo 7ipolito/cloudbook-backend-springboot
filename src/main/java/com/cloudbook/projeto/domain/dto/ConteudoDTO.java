@@ -33,6 +33,8 @@ public class ConteudoDTO implements Serializable{
 	@NotNull
 	private Integer tipo;
 	
+	private String texto;
+	
 	
 	
 	public ConteudoDTO() {
@@ -44,6 +46,7 @@ public class ConteudoDTO implements Serializable{
 		assunto = conteudo.getAssunto();
 		data_criacao= conteudo.getData_criacao();
 		tipo = (conteudo.getTipo()==null)?null:conteudo.getTipo().getCod();
+		texto = conteudo.getTexto();
 	}
 
 	public String getAssunto() {
@@ -76,6 +79,14 @@ public class ConteudoDTO implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 	
 	

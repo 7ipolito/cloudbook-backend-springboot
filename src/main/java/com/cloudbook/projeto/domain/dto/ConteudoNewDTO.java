@@ -12,6 +12,7 @@ public class ConteudoNewDTO {
 	private String assunto;
 	private Date data_criacao;
 	private Integer tipo;
+	private String texto;
 	
 	private Disciplina disciplina = new Disciplina();
 
@@ -50,6 +51,14 @@ public class ConteudoNewDTO {
 
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 	
 	

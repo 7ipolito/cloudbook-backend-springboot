@@ -71,7 +71,7 @@ public class ConteudoResource {
 		return ResponseEntity.ok().body(listDto);
 
 	}
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<ConteudoDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,

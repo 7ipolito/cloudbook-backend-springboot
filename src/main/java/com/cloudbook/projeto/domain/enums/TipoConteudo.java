@@ -4,10 +4,8 @@ package com.cloudbook.projeto.domain.enums;
 
 public enum TipoConteudo {
 	
-	AUDIO(1,"Áudio"),
-	IMAGEM(2,"Imagem"),
-	VIDEO(3,"Vídeo"),
-	ANOTACAO(4,"Anotação");
+	ANOTACAO(1,"Anotação"),
+	IMAGEM(2,"Imagem");
 	
 	private int cod;
 	private String desc;
