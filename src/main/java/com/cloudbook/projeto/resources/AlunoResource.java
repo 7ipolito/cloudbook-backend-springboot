@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cloudbook.projeto.domain.Aluno;
@@ -32,6 +34,15 @@ public class AlunoResource {
 	
 	@RequestMapping(value="/{id}",method =RequestMethod.GET)
 	public ResponseEntity<Aluno> find(@PathVariable Integer id) {
+		
+		
+		RestTemplate restTemplate = new RestTemplate();
+
+		// Add the String message converter
+		restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+
+		// Make the HTTP GET request, marshaling the response to a String
+		String result = restTemplate.getForObject("", String.class, "Android");
 		Aluno obj=service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
@@ -61,12 +72,12 @@ public class AlunoResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	//SÓ O ADMIN PODE DELETAR UM CLIENTE
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	
 	@RequestMapping(value="/{id}",method =RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
@@ -75,6 +86,7 @@ public class AlunoResource {
 		List<Aluno> list =service.findAll();
 		List<AlunoDTO> listDto = list.stream().map(obj -> new AlunoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
+		
 		
 	}
 	
